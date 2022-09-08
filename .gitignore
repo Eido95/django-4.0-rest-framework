@@ -342,5 +342,6 @@ fabric.properties
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 
 ### Django 4.0 REST Framework ###
+!tutorial/db.sqlite3
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm+all,python,django
