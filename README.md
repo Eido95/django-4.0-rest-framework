@@ -14,4 +14,5 @@ https://www.django-rest-framework.org/
 
 ## Insights
 
-* Either all `@api_view` views or `APIView` views are `@csrf_exempt` by default.
+* Either all `@api_view` views, or `APIView` views, or `mixins` views,
+  or `generics` views are `@csrf_exempt` by default.
