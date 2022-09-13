@@ -6,30 +6,32 @@ from snippets.models import Snippet
 
 # Provide a way of serializing and deserializing the snippet instances
 # into representations such as json.
-class SnippetSerializer(serializers.ModelSerializer):
-    # Serializer is replicated a lot of information that's also contained in
-    # the Snippet model, ModelSerializer solves it.
-    # ModelSerializer classes don't do anything particularly magical,
-    # they are simply a shortcut for creating serializer classes
+class SnippetSerializer(serializers.HyperlinkedModelSerializer):
+    # The HyperlinkedModelSerializer has the following differences from ModelSerializer:
+    # It does not include the "id" field by default.
+    # It includes a "url" field, using HyperlinkedIdentityField.
+    # Relationships use HyperlinkedRelatedField, instead of PrimaryKeyRelatedField.
 
     # Used only for serialized representations (not for updating model
     # instances when they are deserialized)
     owner = serializers.ReadOnlyField(source='owner.username')
+    highlight = serializers.HyperlinkedIdentityField(view_name='snippet-highlight', format='html')
 
     class Meta:
         model = Snippet
-        fields = ['id', 'title', 'code', 'linenos', 'language', 'style', 'owner']
+        fields = ['url', 'id', 'title', 'code', 'linenos', 'language', 'style',
+                  'owner', 'highlight']
 
 
-class UserSerializer(serializers.ModelSerializer):
-    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippet-detail', read_only=True)
 
     class Meta:
         model = User
         # We add an explicit field for 'snippets' because 'snippets' is
         # a reverse relationship on the User model (it will not be included
         # by default when using the ModelSerializer class)
-        fields = ['id', 'username', 'snippets']
+        fields = ['url', 'id', 'username', 'snippets']
 
 
 # python manage.py shell
