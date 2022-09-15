@@ -10,7 +10,7 @@ https://www.django-rest-framework.org/
 * ✅ [Tutorial 3: Class-based Views](https://www.django-rest-framework.org/tutorial/3-class-based-views/#tutorial-3-class-based-views)
 * ✅ [Tutorial 4: Authentication & Permissions](https://www.django-rest-framework.org/tutorial/4-authentication-and-permissions/#tutorial-4-authentication-permissions)
 * ✅ [Tutorial 5: Relationships & Hyperlinked APIs](https://www.django-rest-framework.org/tutorial/5-relationships-and-hyperlinked-apis/#tutorial-5-relationships-hyperlinked-apis)
-* 🚧 [Tutorial 6: ViewSets & Routers](https://www.django-rest-framework.org/tutorial/6-viewsets-and-routers/#tutorial-6-viewsets-routers)
+* ✅ [Tutorial 6: ViewSets & Routers](https://www.django-rest-framework.org/tutorial/6-viewsets-and-routers/#tutorial-6-viewsets-routers)
 
 ## Insights
 
@@ -18,3 +18,4 @@ https://www.django-rest-framework.org/
   or `generics` views or `viewsets` views are `@csrf_exempt` by default.
 * `reverse("foo-list", ...)` should have equivalent `path(..., name='foo-list'),`
   in `urlpatterns`.
+* `viewsets` automatically handle `format_suffix_patterns`.
